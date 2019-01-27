@@ -40,13 +40,12 @@ def home(request):
   all_my_games = Game.objects.games_for_user(request.user)
   active_games = all_my_games.active()
   n_games = len(active_games)
-  game_str = "game" if (n_games == 1) else  "games"
 
-  return render(
-  request,
-  "player/home.html",
 
-  { 'n_games': n_games,
-  'game_str':game_str,
-  'games' : active_games}
-)
+  template = "player/home.html"
+  context = { 'n_games': n_games,
+              'game_str': "game" if (n_games == 1) else  "games",
+              'games' : active_games
+  }
+
+  return render(request, template, context)
