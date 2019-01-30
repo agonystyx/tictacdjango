@@ -1,41 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from gameplay.models import Game
 
+@login_required
 def home(request):
-  #return render(request, "player/home.html")
-
-  # return render(
-  #   request,
-  #   "player/home.html",
-  #   {'ngames': Game.objects.count()}
-  #   )
-
-  # gather all games where
-  # the current user is next to play
-  # # games_first_player = Game.objects.filter(
-  # #   first_player = request.user,
-  # #   status='F'
-  # # )
-  # # games_second_player = Game.objects.filter(
-  # #   second_player = request.user,
-  # #   status='S'
-  # # )
-  # #
-  # # all_my_games = list(games_first_player) + \
-  # #                list(games_second_player)
-  # #
-  # # n_games = len(all_my_games)
-  # #
-  # # game_str = "game" if (n_games == 1) else  "games"
-  #
-  # return render(
-  #   request,
-  #   "player/home.html",
-  #
-  #   { 'n_games': n_games,
-  #   'game_str':game_str,
-  #   'games' : all_my_games}
-  # )
 
   all_my_games = Game.objects.games_for_user(request.user)
   active_games = all_my_games.active()

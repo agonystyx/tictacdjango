@@ -124,3 +124,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
   os.path.join(BASE_DIR, "static")
 ]
+
+## login / Logout
+LOGIN_URL = "player_login" #where we send peeps who need to log in
+LOGIN_REDIRECT_URL = "player_home"
+LOGOUT_REDIRECT_URL = "tictactoe_welcome"
